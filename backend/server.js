@@ -8,7 +8,6 @@ var exec = require('child_process').exec;
 
 const hostname = '127.0.0.1';
 const port = 5000;
-const build = 'fn main(){ gear_wasm_builder::build(); }';
 
 const server = express();
 
@@ -25,9 +24,6 @@ server.post("/", function(req, res){
     fs.writeFile("./first-gear-app/Cargo.toml", toml, 'utf8', function(err){
         if (err) return console.log(err);
     });
-    fs.writeFile("./first-gear-app/build.rs", build, 'utf8', function(err){
-        if (err) return console.log(err);
-    });
     exec('~/cargo build --release', function (error, stdout, stderr) {
         if (error !== null) {
           console.log(error);
@@ -40,29 +36,4 @@ server.post("/", function(req, res){
 
 server.listen(port, () => {
 	console.log(hostname.toString() + ' ' + port.toString());
-    exec('~/rustup toolchain add nightly', function (error, stdout, stderr) {
-        if (error !== null) {
-          console.log(error);
-        } else {
-        console.log('stdout: ' + stdout);
-        console.log('stderr: ' + stderr);
-        }
-    });
-    exec('~/rustup target add wasm32-unknown-unknown --toolchain nightly', function (error, stdout, stderr) {
-        if (error !== null) {
-          console.log(error);
-        } else {
-        console.log('stdout: ' + stdout);
-        console.log('stderr: ' + stderr);
-        }
-    });
-    exec('~/cargo new first-gear-app --lib', function (error, stdout, stderr) {
-        if (error !== null) {
-          console.log(error);
-        } else {
-        console.log('stdout: ' + stdout);
-        console.log('stderr: ' + stderr);
-        }
-    });
-    console.log("Success!");
 });
