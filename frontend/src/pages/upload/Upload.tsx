@@ -43,7 +43,7 @@ function Upload() {
                 </tr>
                 <tr>
                     <td className="d-flex justify-content-around">
-                        <Button onClick={() => compilar( document.getElementById('rs').value, document.getElementById('toml').value )} variant="contained">
+                        <Button onClick={() => compilar( document.getElementById('rs')?.nodeValue + " ", document.getElementById('toml')?.nodeValue + " " )} variant="contained">
                             Compile
                         </Button>
                         <Button variant="contained" >
