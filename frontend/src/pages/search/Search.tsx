@@ -14,6 +14,7 @@ function Search() {
           fullWidth
         />
       </div>
+      <Button onClick={() => fetch("https://idea.gear-tech.io/programs/" + document.getElementById('outlined-basic')?.nodeValue + "?node=wss%3A%2F%2Fnode-workshop.gear.rs")}>Enviar</Button>
     </div>
   </>
 
