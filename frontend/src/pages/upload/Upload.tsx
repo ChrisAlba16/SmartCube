@@ -1,17 +1,19 @@
-import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 
 function compilar(rust: string, toml: string) {
+    let data = [];
+    data[0] = rust;
+    data[1] = toml;
     fetch('http://localhost:5000', {
+        mode: 'no-cors',
         method: 'POST',
         headers: {
-            'Accept': 'text/plain',
-            'Content-Type': 'text/plain'
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
         },
-        body: JSON.stringify({ "rs": rust, "toml": toml })
+        body: JSON.stringify(data)
     })
-        .then(response => response.json())
-        .then(response => console.log(JSON.stringify(response)))
 }
 
 function Upload() {
@@ -43,10 +45,10 @@ function Upload() {
                 <tr>
                     <td className="d-flex justify-content-around">
                         <Button onClick={() => compilar('rs', 'toml')} variant="contained">
-                            Auditar
+                            Compile
                         </Button>
                         <Button variant="contained" >
-                            Compilar
+                            Audit
                         </Button>
                     </td>
                 </tr>
