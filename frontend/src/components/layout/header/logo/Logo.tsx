@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
-import { ReactComponent as SVG } from 'assets/images/logo.svg';
+import { ReactComponent as SVG } from 'assets/images/variante-de-cubo-con-sombra.svg';
 
 function Logo() {
   return (
     <Link to="/">
-      <SVG />
+      <SVG style={{width:"180", height:"42.3529"}} />
     </Link>
   );
 }

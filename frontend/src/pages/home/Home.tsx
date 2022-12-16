@@ -1,6 +1,9 @@
 
 function Home() {
-  return (<>Hi</>
+  return (
+  <>
+  <h1 style={{fontSize:"80px", marginLeft:'135px'}}>Welcome to SmartCube</h1>
+  </>
 
   )
 }
