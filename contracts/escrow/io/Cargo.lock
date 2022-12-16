@@ -3,16 +3,6 @@
 version = 3
 
 [[package]]
-name = "ai_io"
-version = "0.1.0"
-dependencies = [
- "contract",
- "gstd",
- "parity-scale-codec",
- "scale-info",
-]
-
-[[package]]
 name = "arrayvec"
 version = "0.7.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -86,6 +76,17 @@ dependencies = [
  "page_size",
  "static_assertions",
  "str-buf",
+]
+
+[[package]]
+name = "escrow_io"
+version = "0.1.0"
+dependencies = [
+ "contract",
+ "gstd",
+ "parity-scale-codec",
+ "primitive-types",
+ "scale-info",
 ]
 
 [[package]]
