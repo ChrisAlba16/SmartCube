@@ -19,9 +19,6 @@ pub enum DBAction {
     SetContractID {
         id: ActorId,
     },
-    UploadToAI {
-        id: ActorId,
-    },
     UploadToEscrow {
         id: ActorId,
     },
@@ -35,7 +32,6 @@ pub enum DBOutput {
     ContractAdded,
     ContractUpdated,
     ContractIDSet,
-    ContractUploadedToAI,
     ContractUploadedToEscrow,
     ContractUploadedToClient,
 }
