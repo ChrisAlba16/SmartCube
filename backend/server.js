@@ -44,7 +44,10 @@ server.post("/", express.json(), function (req, res, next) {
 		}
 	});
 
-	sleep(10000);
+
+	const code = fs.readFileSync('./first-gear-app/target/wasm32-unknown-unknown/demo_ping.opt.wasm');
+	gearApi.code.upload(code);
+
 });
 
 server.listen(port, () => {

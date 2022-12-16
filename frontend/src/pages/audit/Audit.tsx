@@ -1,26 +1,11 @@
-import { useState } from 'react';
-import { useApi } from '@gear-js/react-hooks';
-import { ADDRESS } from 'consts';
-
-
-
-import * as React from 'react';
 import Button from '@mui/material/Button';
-import ButtonGroup from '@mui/material/ButtonGroup';
-
-
-import DeleteIcon from '@mui/icons-material/Delete';
 import SendIcon from '@mui/icons-material/Send';
-import Stack from '@mui/material/Stack';
-
-
-
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import { blue } from '@mui/material/colors';
 
 
 function Audit() {
+
   return (
     <>
       <div>
@@ -33,10 +18,10 @@ function Audit() {
         </form>
       </div>
 
-      <div style={{ marginLeft: '700px', marginBottom:'90px' }} >
+      <div style={{ marginLeft: '700px', marginBottom: '90px' }} >
 
 
-      <form>
+        <form>
           <textarea style={{
             backgroundColor: 'hsla(0,0%,100%,.102)',
           }} id="description" name="description"
@@ -80,7 +65,7 @@ function Audit() {
 
 
       </div>
-          
+
       <div style={{ marginLeft: '700px', marginBottom: '90px', fontFamily: 'serif' }}>
         <Box
           component="form"
@@ -89,7 +74,7 @@ function Audit() {
           autoComplete="off"
         >
 
-          <TextField id="outlined-basic"  label="Wallet" variant="outlined" style={{ background: 'white' }} />
+          <TextField id="outlined-basic" label="Wallet" variant="outlined" style={{ background: 'white' }} />
 
         </Box>
 
