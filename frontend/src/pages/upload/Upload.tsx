@@ -1,4 +1,5 @@
 import Button from '@mui/material/Button';
+import { SetStateAction, useState } from 'react';
 
 function compilar(rust: string, toml: string) {
     let data = [];
@@ -16,6 +17,19 @@ function compilar(rust: string, toml: string) {
 }
 
 function Upload() {
+    const [message, setMessage] = useState('');
+    const handleMessageChange = (event: { target: { value: SetStateAction<string>; }; }) => {
+        // 👇️ access textarea value
+        setMessage(event.target.value);
+    };
+
+    const [message2, setMessage2] = useState('');
+    const handleMessageChange2 = (event: { target: { value: SetStateAction<string>; }; }) => {
+        // 👇️ access textarea value
+        setMessage2(event.target.value);
+    };
+
+
     return (
         <table className="table table-borderless">
             <tbody>
@@ -28,7 +42,8 @@ function Upload() {
                         <textarea style={{
                             backgroundColor: 'hsla(0,0%,100%,.102)',
                         }} id="rs" name="rs"
-                            rows={12} cols={70} placeholder="Ingrese el contenido de tu codigo Rust" />
+                            rows={12} cols={70} placeholder="Ingrese el contenido de tu codigo Rust" value={message}
+                            onChange={handleMessageChange} />
                     </td>
                     <td>
                         <p style={{
@@ -38,12 +53,13 @@ function Upload() {
                         <textarea style={{
                             backgroundColor: 'hsla(0,0%,100%,.102)',
                         }} id="toml" name="toml"
-                            rows={12} cols={70} placeholder="Ingrese el contenido de tu archivo Cargo.toml" />
+                            rows={12} cols={70} placeholder="Ingrese el contenido de tu archivo Cargo.toml" value={message2}
+                            onChange={handleMessageChange2} />
                     </td>
                 </tr>
                 <tr>
                     <td className="d-flex justify-content-around">
-                        <Button onClick={() => compilar( document.getElementById('rs')?.nodeValue + " ", document.getElementById('toml')?.nodeValue + " " )} variant="contained">
+                        <Button onClick={() => compilar(message, message2)} variant="contained">
                             Compile
                         </Button>
                         <Button variant="contained" >

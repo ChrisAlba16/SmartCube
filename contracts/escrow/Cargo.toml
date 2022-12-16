@@ -11,6 +11,8 @@ gstd = { git = "https://github.com/gear-tech/gear.git", features = ["debug"], br
 ft-main-io = { git = "https://github.com/gear-dapps/sharded-fungible-token.git", tag = "0.1.2" }
 ft-logic-io = { git = "https://github.com/gear-dapps/sharded-fungible-token.git", tag = "0.1.2" }
 escrow_io = { path = "io"}
+primitive-types = { version = "0.12.1", default-features = false, features = ["scale-info"] }
+
 
 [dev-dependencies]
 gtest = { git = "https://github.com/gear-tech/gear.git", branch = "stable" }
