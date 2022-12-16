@@ -23,13 +23,22 @@ server.post("/", function(req, res){
 		}
 		console.log("rs replaced");
 	});
-	  fs.writeFile('./first-gear-app/Cargo.toml', toml, err => {
+	fs.writeFile('./first-gear-app/Cargo.toml', toml, err => {
 		if (err) {
 		  console.error(err);
 		}
 		console.log("toml replaced");
 	});
-	  exec('~/cargo build --release', function (error, stdout, stderr) {
+	exec('chdir', function (error, stdout, stderr) {
+    	if (error !== null) {
+      		console.log(error);
+    		}
+		else {
+    		console.log('stdout: ' + stdout);
+    		console.log('stderr: ' + stderr);
+    	}
+	});
+	exec('~/cargo build --release', function (error, stdout, stderr) {
     	if (error !== null) {
       		console.log(error);
     		}
