@@ -7,7 +7,6 @@ import 'App.scss';
 function Component() {
   const { isApiReady } = useApi();
   const { isAccountReady } = useAccount();
-
   const isAppReady = isApiReady && isAccountReady;
 
   return (
