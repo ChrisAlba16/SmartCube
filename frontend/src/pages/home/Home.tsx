@@ -25,15 +25,15 @@ async function useMessages() {
 function Home() {
   return (
     <>
-     <ButtonGroup variant="contained" aria-label="outlined primary button group">
-      <Button>IA</Button>
-      <Button>RECLAMOS</Button>
-      <Button>SUBIR CONTRATOS</Button>
-      <Button>AUDITAR CONTRATOS</Button>
-      <Button>LISTA DE CONTRATOS</Button>
-      <Button>USAR CONTRATOS</Button>
-      <Button>TODOS LOS CONTRATOS</Button>
-    </ButtonGroup>
+      <ButtonGroup variant="contained" aria-label="outlined primary button group">
+        <Button>IA</Button>
+        <Button>RECLAMOS</Button>
+        <Button>SUBIR CONTRATOS</Button>
+        <Button>AUDITAR CONTRATOS</Button>
+        <Button>LISTA DE CONTRATOS</Button>
+        <Button>USAR CONTRATOS</Button>
+        <Button>TODOS LOS CONTRATOS</Button>
+      </ButtonGroup>
     </>
   )
 }
