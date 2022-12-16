@@ -5,12 +5,11 @@ function compilar(rust: string, toml: string) {
     data[0] = rust;
     data[1] = toml;
     fetch('http://localhost:5000', {
-        mode: 'no-cors',
+        mode: 'cors',
         method: 'POST',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*'
         },
         body: JSON.stringify(data)
     })
@@ -44,7 +43,7 @@ function Upload() {
                 </tr>
                 <tr>
                     <td className="d-flex justify-content-around">
-                        <Button onClick={() => compilar('rs', 'toml')} variant="contained">
+                        <Button onClick={() => compilar( document.getElementById('rs').value, document.getElementById('toml').value )} variant="contained">
                             Compile
                         </Button>
                         <Button variant="contained" >

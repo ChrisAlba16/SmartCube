@@ -9,14 +9,17 @@ const hostname = '127.0.0.1';
 const port = 5000;
 
 const server = express();
+server.use((req, res, next) => {
+    res.append('Access-Control-Allow-Origin', ['*']);
+    res.append('Access-Control-Allow-Headers', 'Content-Type');
+    next();
+});
 
-server.use(bodyParser.urlencoded({
-	extended:true
-}));
-
-server.post("/", function(req, res){
-	var rs = JSON.parse(req.body.fieldRS);
-    var toml = JSON.parse(req.body.fieldTOML);
+server.post("/", express.json(),function(req, res, next){
+	console.log(req.body);
+	//res.send(req.body);
+	var rs = req.body[0];
+    var toml = req.body[1];
     fs.writeFile('./first-gear-app/src/lib.rs', rs, err => {
 		if (err) {
 		  console.error(err);
