@@ -10,7 +10,6 @@ circular_buffer = { git = "https://github.com/breathx/circular-buffer-rs.git", d
 gstd = { git = "https://github.com/gear-tech/gear.git", features = ["debug"], branch = "stable" }
 db_io = { path = "io"}
 contract = {path = "../contract"}
-ai_io = { path = "../ai/io"}
 escrow_io = { path = "../escrow/io"}
 client_io = { path = "../client/io"}
 

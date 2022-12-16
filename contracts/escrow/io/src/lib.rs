@@ -1,15 +1,8 @@
 #![no_std]
 use codec::{Decode, Encode};
-use contract::*;
 use gstd::{prelude::*, ActorId};
 use primitive_types::U256;
 use scale_info::TypeInfo;
-/**
-#[derive(Debug, Encode, Decode, TypeInfo)]
- pub enum EscrowAction {
-    ContractUploaded { contract: Contract },
-}
-**/
 
 /// An escrow wallet ID.
 pub type WalletId = U256;

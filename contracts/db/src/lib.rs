@@ -1,5 +1,4 @@
 #![no_std]
-use ai_io::*;
 use client_io::*;
 use contract::*;
 use db_io::*;
@@ -19,7 +18,6 @@ gstd::metadata! {
 pub struct Database {
     pub owner_id: ActorId,
     pub escrow_id: ActorId,
-    pub ai_id: ActorId,
     pub contracts: Vec<Contract>,
 }
 
@@ -32,10 +30,6 @@ impl Database {
 
     pub fn set_escrow_id(&mut self, id: ActorId) {
         self.escrow_id = id;
-    }
-
-    pub fn set_ai_id(&mut self, id: ActorId) {
-        self.ai_id = id;
     }
 
     pub fn add_contract(&mut self, contract: Contract) {
@@ -85,27 +79,6 @@ impl Database {
 
         msg::reply(DBOutput::ContractIDSet, 0)
             .expect("Error in reply to message DBOutput::ContractIDSet");
-    }
-
-    pub async fn upload_to_ai(&mut self, contract_id: &ActorId) {
-        assert_eq!(
-            msg::source(),
-            self.owner_id,
-            "You are not authorized to upload"
-        );
-        let index: usize = find_contract(&self.contracts, &contract_id);
-        msg::send_for_reply_as::<_, AIOutput>(
-            self.ai_id,
-            AIAction::UpdateAI {
-                contract: self.contracts[index].clone(),
-            },
-            0,
-        )
-        .expect("Error in sending a message `[AIAction::UpdateAI]` to ai contract")
-        .await
-        .expect("Unable to decode `AIAction`");
-        msg::reply(DBOutput::ContractUploadedToAI, 0)
-            .expect("Error in reply to message  DBAction::UploadToAI");
     }
 
     pub async fn upload_to_escrow(&mut self, contract_id: &ActorId) {
@@ -179,7 +152,6 @@ async unsafe fn main() {
             label,
         } => data_base.update_contract(id, rate, audited, auditor_description, label),
         DBAction::SetContractID { id } => data_base.set_contract_id(id),
-        DBAction::UploadToAI { id } => data_base.upload_to_ai(&id).await,
         DBAction::UploadToEscrow { id } => data_base.upload_to_escrow(&id).await,
         DBAction::UploadToClient { id } => data_base.upload_to_client(&id).await,
     }
