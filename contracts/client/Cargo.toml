@@ -8,7 +8,11 @@ edition = "2021"
 [dependencies]
 circular_buffer = { git = "https://github.com/breathx/circular-buffer-rs.git", default-features = false }
 gstd = { git = "https://github.com/gear-tech/gear.git", features = ["debug"], branch = "stable" }
+codec = { package = "parity-scale-codec", version = "3.2.1", default-features = false }
+scale-info = { version = "2.2.0", default-features = false }
 client_io = { path = "io"}
+ai_io = { path = "../ai/io"}
+
 
 [dev-dependencies]
 gtest = { git = "https://github.com/gear-tech/gear.git", branch = "stable" }
