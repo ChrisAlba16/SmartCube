@@ -11,7 +11,6 @@ gstd = { git = "https://github.com/gear-tech/gear.git", features = ["debug"], br
 db_io = { path = "io"}
 contract = {path = "../contract"}
 escrow_io = { path = "../escrow/io"}
-client_io = { path = "../client/io"}
 
 [dev-dependencies]
 gtest = { git = "https://github.com/gear-tech/gear.git", branch = "stable" }

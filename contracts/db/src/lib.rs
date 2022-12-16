@@ -1,8 +1,6 @@
 #![no_std]
-use client_io::*;
 use contract::*;
 use db_io::*;
-use escrow_io::*;
 use gstd::{msg, prelude::*, ActorId};
 
 gstd::metadata! {
@@ -18,6 +16,7 @@ gstd::metadata! {
 pub struct Database {
     pub owner_id: ActorId,
     pub escrow_id: ActorId,
+    pub client_id: ActorId,
     pub contracts: Vec<Contract>,
 }
 
@@ -43,6 +42,7 @@ impl Database {
 
         msg::reply(DBOutput::ContractAdded, 0)
             .expect("Error in reply to message DBOutput::ContractAdded");
+            
     }
 
     pub fn update_contract(
@@ -80,46 +80,6 @@ impl Database {
         msg::reply(DBOutput::ContractIDSet, 0)
             .expect("Error in reply to message DBOutput::ContractIDSet");
     }
-
-    pub async fn upload_to_escrow(&mut self, contract_id: &ActorId) {
-        assert_eq!(
-            msg::source(),
-            self.owner_id,
-            "You are not authorized to upload"
-        );
-        let index: usize = find_contract(&self.contracts, &contract_id);
-        msg::send_for_reply_as::<_, EscrowOutput>(
-            self.escrow_id,
-            EscrowAction::ContractUploaded {
-                contract: self.contracts[index].clone(),
-            },
-            0,
-        )
-        .expect("Error in sending a message `[EscrowAction::ContractUploaded]` to escrow contract")
-        .await
-        .expect("Unable to decode `EscrowAction`");
-        msg::reply(DBOutput::ContractUploadedToEscrow, 0)
-            .expect("Error in reply to message  DBAction::UploadToEscrow");
-    }
-    pub async fn upload_to_client(&mut self, contract_id: &ActorId) {
-        assert_eq!(
-            msg::source(),
-            self.owner_id,
-            "You are not authorized to upload"
-        );
-        msg::send_for_reply_as::<_, ClientOutput>(
-            self.client_id,
-            ClientAction::IDRecived {
-                id: contract_id.clone(),
-            },
-            0,
-        )
-        .expect("Error in sending a message `[ClientAction::IDRecived]` to escrow contract")
-        .await
-        .expect("Unable to decode `ClientAction`");
-        msg::reply(DBOutput::ContractUploadedToClient, 0)
-            .expect("Error in reply to message  DBAction::UploadToClient");
-    }
 }
 
 fn find_contract(contracts: &Vec<Contract>, id: &ActorId) -> usize {
@@ -152,8 +112,6 @@ async unsafe fn main() {
             label,
         } => data_base.update_contract(id, rate, audited, auditor_description, label),
         DBAction::SetContractID { id } => data_base.set_contract_id(id),
-        DBAction::UploadToEscrow { id } => data_base.upload_to_escrow(&id).await,
-        DBAction::UploadToClient { id } => data_base.upload_to_client(&id).await,
     }
 }
 

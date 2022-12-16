@@ -19,12 +19,6 @@ pub enum DBAction {
     SetContractID {
         id: ActorId,
     },
-    UploadToEscrow {
-        id: ActorId,
-    },
-    UploadToClient {
-        id: ActorId,
-    },
 }
 
 #[derive(Debug, Encode, Decode, TypeInfo)]
@@ -32,6 +26,4 @@ pub enum DBOutput {
     ContractAdded,
     ContractUpdated,
     ContractIDSet,
-    ContractUploadedToEscrow,
-    ContractUploadedToClient,
 }
