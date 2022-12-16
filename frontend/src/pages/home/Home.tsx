@@ -6,6 +6,9 @@ import {
   Message,
 } from 'types';
 
+import * as React from 'react';
+import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
 
 // Get messages on channel page
 async function useMessages() {
@@ -20,8 +23,19 @@ async function useMessages() {
 }
 
 function Home() {
-  console.log(useMessages());
-  return <div >Hola</div>;
+  return (
+    <>
+     <ButtonGroup variant="contained" aria-label="outlined primary button group">
+      <Button>IA</Button>
+      <Button>RECLAMOS</Button>
+      <Button>SUBIR CONTRATOS</Button>
+      <Button>AUDITAR CONTRATOS</Button>
+      <Button>LISTA DE CONTRATOS</Button>
+      <Button>USAR CONTRATOS</Button>
+      <Button>TODOS LOS CONTRATOS</Button>
+    </ButtonGroup>
+    </>
+  )
 }
 
 export { Home };
