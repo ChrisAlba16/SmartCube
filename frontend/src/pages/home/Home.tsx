@@ -5,6 +5,8 @@ import { dbMetaWasm } from 'assets/wasm';
 import {
   Message,
 } from 'types';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
 
 
 // Get messages on channel page
@@ -20,8 +22,14 @@ async function useMessages() {
 }
 
 function Home() {
-  console.log(useMessages());
-  return <div >Hola</div>;
+  return (
+    <>
+    
+    
+
+    </>
+
+  );
 }
 
 export { Home };
