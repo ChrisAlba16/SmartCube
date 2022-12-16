@@ -1,0 +1,7 @@
+[workspace]
+resolver = "2"
+members = [
+    "ft-logic",
+    "ft-main",
+    "ft-storage",
+]
